@@ -45,7 +45,6 @@ class ProductModel extends Product {
       stock: json['stock'],
       brand: json['brand'] ?? '',
       images: List<String>.from(json['images']) ?? [],
-      // thumbnail: json['thumbnail'],
     );
   }
 

@@ -1,11 +1,14 @@
 
 import 'package:flutter/material.dart';
 
-final primaryColor = Color.fromARGB(255, 246, 16, 108);
-final secondaryColor = Color.fromARGB(255, 246, 206, 225);
-
+final primaryColor = Color.fromRGBO(202, 198, 198, 1);
+final secondaryColor = Color.fromARGB(255, 249, 249, 249);
+final BgColor = Color.fromRGBO(222, 218, 218, 1);
+final blackColor = Colors.black;
 
 final appTheme = ThemeData(
+  
+  scaffoldBackgroundColor: BgColor,
     appBarTheme: AppBarTheme(
       backgroundColor: primaryColor,
       centerTitle: true,
@@ -17,11 +20,11 @@ final appTheme = ThemeData(
     ),
     progressIndicatorTheme: ProgressIndicatorThemeData(color: primaryColor),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: primaryColor,
+      backgroundColor: Colors.deepOrangeAccent,
       foregroundColor: secondaryColor,
     ),
     inputDecorationTheme: InputDecorationTheme(
-        floatingLabelStyle: TextStyle(color: primaryColor),
+        floatingLabelStyle: TextStyle(color: blackColor),
         iconColor: secondaryColor,
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: secondaryColor),
