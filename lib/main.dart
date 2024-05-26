@@ -18,10 +18,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
+      
         providers: [ 
           BlocProvider(create: (_) => di.sl<ProductsBloc>()..add(getAllProductEvent())),
         ],
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: appTheme,
           home: ProductPage(),

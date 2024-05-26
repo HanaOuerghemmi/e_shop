@@ -1,5 +1,4 @@
 import 'package:clippy_flutter/clippy_flutter.dart';
-import 'package:e_shop/core/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class ProductCategorieSticker extends StatelessWidget {
@@ -16,16 +15,16 @@ class ProductCategorieSticker extends StatelessWidget {
         arcType: ArcType.CONVEY,
         height: 5,
         child: Container(
-          width: 50,
+          width: 30,
           height: 50,
           color: (() {
             switch (category) {
               case 'newProduction':
-                return primaryColor;
+                return Colors.orange;
               case 'discount':
                 return Colors.red;
               default:
-                return Colors.purpleAccent; // Default color if no match
+                return Colors.deepOrangeAccent; // Default color if no match
             }
           })(),
           child: Center(

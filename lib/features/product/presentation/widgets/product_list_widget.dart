@@ -15,7 +15,7 @@ class ProductListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       itemCount: products.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2, // Number of columns
         crossAxisSpacing: 10, // Horizontal space between items
         mainAxisSpacing: 10, // Vertical space between items

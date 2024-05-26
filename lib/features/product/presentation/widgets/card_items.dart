@@ -20,44 +20,36 @@ class CardItems extends StatelessWidget {
     return Stack(
       children: [
         Positioned(
-          right: 0,
+          right: 20,
           top: 0,
-          // bottom:0,
           child: ProductCategorieSticker(category: category),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                //Text(category, style: TextStyle(color: primaryColor),),
-                //title //brand
-                ListTile(title: Text(
-                    // textAlign:TextAlign.center,
-                    product.brand), subtitle: Text(
-                    // textAlign:TextAlign.center,
-                    product.title)),
-                //image
-                Image.network(
+        Positioned(
+          top: 60,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+            child: Column(children: [
+              Center(
+                child: Image.network(
                   product.images[0],
-                  height: MediaQuery.of(context).size.height / 7,
+                  height: MediaQuery.of(context).size.height / 4,
                 ),
-                //descripion
-
-                //Text(product.description)),
-                Text(
-                  textcateWithEllipsis(
-                      cutoff: 20, myString: product.description),
-                ),
-                //categorie  //price
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(product.category),
-                    Text('${product.price}£'),
-                  ],
-                )
-              ]),
+              ),
+              Text(
+                textcateWithEllipsis(cutoff: 15, myString: product.title),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(product.brand),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text('${product.price}£'),
+                ],
+              )
+            ]),
+          ),
         ),
       ],
     );
