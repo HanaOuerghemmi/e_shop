@@ -1,43 +1,39 @@
 import 'package:e_shop/features/product/domain/entities/product.dart';
+import 'package:e_shop/features/product/presentation/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 
 
-
 class ProductListWidget extends StatelessWidget {
-  final List<Product> product;
+  final List<Product> products;
   const ProductListWidget({
     Key? key,
-    required this.product,
+    required this.products,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
-    return ListView.separated(
-      itemCount: 10,
+    return GridView.builder(
+      itemCount: products.length,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2, // Number of columns
+        crossAxisSpacing: 10, // Horizontal space between items
+        mainAxisSpacing: 10, // Vertical space between items
+        childAspectRatio: 0.5,
+      ),
       itemBuilder: (context, index) {
-        return ListTile(
-          leading: Text(product[index].id.toString()),
-          title: Text(
-            product[index].title,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          subtitle: Text(
-            product[index].price.toString() + '  ' ,
-            style: TextStyle(fontSize: 16),
-          ),
-          contentPadding: EdgeInsets.symmetric(horizontal: 10),
+        final product = products[index];
+        return ProductCard(
           onTap: () {
             // Navigator.push(
             //   context,
             //   MaterialPageRoute(
-            //     builder: (_) => ProductDetailPage(product: product[index]),
+            //     builder: (_) => ProductDetailPage(product: products[index]),
             //   ),
             // );
           },
+          product: product,
         );
       },
-      separatorBuilder: (context, index) => Divider(thickness: 1),
     );
   }
 }

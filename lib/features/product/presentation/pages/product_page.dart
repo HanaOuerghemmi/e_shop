@@ -24,7 +24,7 @@ class ProductPage extends StatelessWidget {
           } else if (state is LoadedProductsState) {
             return RefreshIndicator(
                 onRefresh: () => _onRefresh(context),
-                child: ProductListWidget(product: state.products));
+                child: ProductListWidget(products: state.products));
           } else if (state is ErrorProductsState) {
             return MessageDisplayWidget(message: state.message);
           }

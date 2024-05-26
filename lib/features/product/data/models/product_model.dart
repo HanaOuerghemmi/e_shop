@@ -22,23 +22,23 @@ class ProductModel extends Product {
     // required double discountPercentage,
     // required double rating,
     // required int stock,
-    // required String brand,
-    // required List<String> images,
+     required String brand,
+     required List<String> images,
     // required String thumbnail,
   }) : super(
           id: id,
           title: title,
           description: description,
+          brand: brand,
           category: category,
           price: price,
           meta: meta,
+          images: images
         
           // discountPercentage: discountPercentage,
           // rating: rating,
           // stock: stock,
-
           // brand: brand,
-
           // images: images,
           // thumbnail: thumbnail,
         );
@@ -56,8 +56,8 @@ class ProductModel extends Product {
       // discountPercentage: (json['discountPercentage'] as num).toDouble(),
       // rating: (json['rating'] as num).toDouble(),
       // stock: json['stock'],
-      // brand: json['brand'],
-      // images: List<String>.from(json['images']),
+       brand: json['brand']?? '',
+       images: List<String>.from(json['images'])?? [],
       // thumbnail: json['thumbnail'],
     );
   }
@@ -74,7 +74,7 @@ class ProductModel extends Product {
       // 'rating': rating,
       // 'stock': stock,
       // 'tags': List<dynamic>.from(tags.map((x) => x)),
-      // 'brand': brand,
+       'brand': brand,
       // 'sku': sku,
       // 'weight': weight,
       // 'dimensions': Map<String, dynamic>.from(dimensions),
@@ -86,12 +86,13 @@ class ProductModel extends Product {
       // 'minimumOrderQuantity': minimumOrderQuantity,
 'meta': {
         'createdAt': createdAt.toIso8601String(),
-      },      // 'images': List<dynamic>.from(images.map((x) => x)),
+      },     
+       'images': List<dynamic>.from(images.map((x) => x)),
       // 'thumbnail': thumbnail,
     };
   }
 
-  ProductCategory getCategory() {
+  ProductCategory get getCategory{
     final now = DateTime.now();
     if (price < 10) {
       return ProductCategory.ventFlash;

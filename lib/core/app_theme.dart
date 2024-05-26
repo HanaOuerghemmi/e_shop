@@ -31,3 +31,18 @@ final appTheme = ThemeData(
           borderSide: BorderSide(color: primaryColor),
           borderRadius: BorderRadius.circular(8),
         )));
+
+  
+  final baseBoxDecoration = BoxDecoration(
+  color: secondaryColor.withOpacity(0.2),
+  borderRadius: BorderRadius.all(Radius.circular(25)), // Const border radius
+  boxShadow: [
+    BoxShadow(
+      color: secondaryColor.withOpacity(0.4),
+      spreadRadius: 2, // Can be const if it was a constant value
+      blurRadius: 5, // Can be const if it was a constant value
+      offset: Offset(0, 3), // Const offset
+    ),
+  ],
+);
+
