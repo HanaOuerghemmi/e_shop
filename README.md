@@ -4,25 +4,6 @@ This Flutter project uses SOLID and Clean Architecture principles to keep the co
 
 ## Project Structure
 
-features
-│────featuresName
-│   │ 
-│   │── data/
-│   │   ├── datasources/         # Data layer datasources (API, database, etc.)
-│   │   ├── models/              # Data models
-│   │   └── repositories/        # Data layer repositories
-│   ├── domain/
-│   │   ├── entities/            # Domain entities
-│   │   ├── repositories/        # Abstract domain repositories
-│   │   └── usecases/            # Domain use cases
-│   │
-│   ├── presentation/
-│   │   ├── pages/               # UI pages
-│   │   ├── widgets/             # Reusable UI widgets
-│   │   ├── blocs/               # Business Logic Components (BLoCs)
-
-
-
 This project follows Clean Architecture principles, dividing the codebase into three layers:
 
 ## Architecture
@@ -51,3 +32,23 @@ flutter run
 ## Contributing
 
 Contributions are welcome! Feel free to open issues or submit pull requests to improve this project.
+features
+│────featuresName
+│   │ 
+│   │── data/
+│   │   ├── datasources/# Data 
+│   │   │   Layer datasources (API, database, etc.)
+│   │   ├── models/# Data models
+│   │   ├── repositories/# Data layer repositories
+│   │   └── test/# Unit and widget tests
+│   ├── domain/
+│   │   ├── entities/# Domain entities
+│   │   ├── repositories/# Abstract domain repositories
+│   │   ├── usecases/# Domain use cases
+│   │   └── test/# Unit and widget tests
+│   │
+│   ├── presentation/
+│   │   ├── pages/               # UI pages
+│   │   ├── widgets/             # Reusable UI widgets
+│   │   ├── blocs/               # Business Logic Components (BLoCs)
+│   │   └── test/                # Unit and widget tests
