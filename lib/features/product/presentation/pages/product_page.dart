@@ -13,6 +13,12 @@ class ProductPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('List all Products'),
+        actions: [
+          IconButton(
+            onPressed: (){}, 
+            icon: Icon(Icons.search, color: Colors.white,)
+            )
+        ],
       ),
       body: Padding(
         padding: EdgeInsets.all(20),
@@ -29,13 +35,8 @@ class ProductPage extends StatelessWidget {
             return MessageDisplayWidget(message: state.message);
           }
           return LoadingWidget();
-  
           }
-          
           ),
-
-        
-        
         ) ,
     );
   }

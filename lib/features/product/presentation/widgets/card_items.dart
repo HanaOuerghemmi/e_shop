@@ -1,4 +1,3 @@
-
 import 'package:e_shop/core/app_theme.dart';
 import 'package:e_shop/core/text/text_helper.dart';
 import 'package:e_shop/features/product/data/models/product_model.dart';
@@ -16,56 +15,51 @@ class CardItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-final category = (product as ProductModel).getCategory.name;
+    final category = (product as ProductModel).getCategory.name;
 
     return Stack(
       children: [
         Positioned(
           right: 0,
-top: 0,
-         // bottom:0,
+          top: 0,
+          // bottom:0,
           child: ProductCategorieSticker(category: category),
-          ),
+        ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
           child: Column(
-          
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              
-              //Text(category, style: TextStyle(color: primaryColor),),
-            //title //brand
-            ListTile(         
-              title: Text(
-               // textAlign:TextAlign.center,
-                product.brand), subtitle: 
-                Text(
-                 // textAlign:TextAlign.center,
-                  product.title
-                  )),
-            //image
-            Image.network(
-              product.images[0],
-              height: MediaQuery.of(context).size.height /7,
-            ),
-            //descripion
-           
-            //Text(product.description)),
-             Text(
-              textcateWithEllipsis(cutoff: 20, myString: product.description),
-            ),
-            //categorie  //price
-            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(product.category),
-                Text('${product.price}£'),
-              ],
-            )
-          ]),
+                //Text(category, style: TextStyle(color: primaryColor),),
+                //title //brand
+                ListTile(title: Text(
+                    // textAlign:TextAlign.center,
+                    product.brand), subtitle: Text(
+                    // textAlign:TextAlign.center,
+                    product.title)),
+                //image
+                Image.network(
+                  product.images[0],
+                  height: MediaQuery.of(context).size.height / 7,
+                ),
+                //descripion
+
+                //Text(product.description)),
+                Text(
+                  textcateWithEllipsis(
+                      cutoff: 20, myString: product.description),
+                ),
+                //categorie  //price
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(product.category),
+                    Text('${product.price}£'),
+                  ],
+                )
+              ]),
         ),
       ],
     );
   }
 }
-
