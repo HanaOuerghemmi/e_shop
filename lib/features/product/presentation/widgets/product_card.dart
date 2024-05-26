@@ -13,13 +13,10 @@ class ProductCard extends StatelessWidget {
     return Container(
       decoration: baseBoxDecoration,   
       width: MediaQuery.of(context).size.width / 2.2,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 8),
-        child: GestureDetector(
-          onTap: onTap,
-          child: CardItems(product: product)
-          ),
-      ),
+      child: GestureDetector(
+        onTap: onTap,
+        child: CardItems(product: product)
+        ),
     );
   }
 }
