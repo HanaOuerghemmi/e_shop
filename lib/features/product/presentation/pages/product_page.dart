@@ -10,33 +10,52 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     final TextEditingController _searchController = TextEditingController();
+
+    void _onSearch(String productName) {
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text('List all Products'),
-        actions: [
-          IconButton(
-            onPressed: (){}, 
-            icon: Icon(Icons.search, color: Colors.white,)
-            )
-        ],
       ),
       body: Padding(
         padding: EdgeInsets.all(20),
-        child: BlocBuilder<ProductsBloc, ProductsState>(
-          
-          builder:(context, state){
-            if (state is LoadingProductsState) {
-            return LoadingWidget();
-          } else if (state is LoadedProductsState) {
-            return RefreshIndicator(
-                onRefresh: () => _onRefresh(context),
-                child: ProductListWidget(products: state.products));
-          } else if (state is ErrorProductsState) {
-            return MessageDisplayWidget(message: state.message);
-          }
-          return LoadingWidget();
-          }
-          ),
+        child: Column(
+          children: [
+            TextField(
+              controller: _searchController,
+              decoration: InputDecoration(
+                labelText: 'Search',
+                border: OutlineInputBorder(),
+                suffixIcon: IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () {
+                    _onSearch(_searchController.text);
+                  },
+                ),
+              ),
+              onSubmitted: _onSearch,
+            ),
+            SizedBox(height: 20),
+            Expanded(
+              child: BlocBuilder<ProductsBloc, ProductsState>(
+                
+                builder:(context, state){
+                  if (state is LoadingProductsState) {
+                  return LoadingWidget();
+                } else if (state is LoadedProductsState) {
+                  return RefreshIndicator(
+                      onRefresh: () => _onRefresh(context),
+                      child: ProductListWidget(products: state.products));
+                } else if (state is ErrorProductsState) {
+                  return MessageDisplayWidget(message: state.message);
+                }
+                return LoadingWidget();
+                }
+                ),
+            ),
+          ],
+        ),
         ) ,
     );
   }
