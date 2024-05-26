@@ -1,14 +1,14 @@
-
-
 import 'package:e_shop/features/product/domain/entities/product.dart';
+
 enum ProductCategory {
   discount,
   ventFlash,
   newProduction,
   none,
 }
+
 class ProductModel extends Product {
-    final DateTime createdAt;
+  final DateTime createdAt;
 
   ProductModel({
     required int id,
@@ -18,13 +18,9 @@ class ProductModel extends Product {
     required double price,
     required Map<String, String> meta,
     required this.createdAt,
-
-    // required double discountPercentage,
-    // required double rating,
-    // required int stock,
-     required String brand,
-     required List<String> images,
-    // required String thumbnail,
+    required int stock,
+    required String brand,
+    required List<String> images,
   }) : super(
           id: id,
           title: title,
@@ -33,17 +29,11 @@ class ProductModel extends Product {
           category: category,
           price: price,
           meta: meta,
-          images: images
-        
-          // discountPercentage: discountPercentage,
-          // rating: rating,
-          // stock: stock,
-          // brand: brand,
-          // images: images,
-          // thumbnail: thumbnail,
+          images: images,
+          stock: stock,
         );
 
-   factory ProductModel.fromJson(Map<String, dynamic> json) {
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
       id: json['id'],
       title: json['title'],
@@ -52,12 +42,9 @@ class ProductModel extends Product {
       price: (json['price'] as num).toDouble(),
       meta: Map<String, String>.from(json['meta']),
       createdAt: DateTime.parse(json['meta']['createdAt']),
-
-      // discountPercentage: (json['discountPercentage'] as num).toDouble(),
-      // rating: (json['rating'] as num).toDouble(),
-      // stock: json['stock'],
-       brand: json['brand']?? '',
-       images: List<String>.from(json['images'])?? [],
+      stock: json['stock'],
+      brand: json['brand'] ?? '',
+      images: List<String>.from(json['images']) ?? [],
       // thumbnail: json['thumbnail'],
     );
   }
@@ -69,36 +56,22 @@ class ProductModel extends Product {
       'description': description,
       'category': category,
       'price': price,
-
-      // 'discountPercentage': discountPercentage,
-      // 'rating': rating,
-      // 'stock': stock,
-      // 'tags': List<dynamic>.from(tags.map((x) => x)),
-       'brand': brand,
-      // 'sku': sku,
-      // 'weight': weight,
-      // 'dimensions': Map<String, dynamic>.from(dimensions),
-      // 'warrantyInformation': warrantyInformation,
-      // 'shippingInformation': shippingInformation,
-      // 'availabilityStatus': availabilityStatus,
-      // 'reviews': List<dynamic>.from(reviews),
-      // 'returnPolicy': returnPolicy,
-      // 'minimumOrderQuantity': minimumOrderQuantity,
-'meta': {
+      'stock': stock,
+      'brand': brand,
+      'meta': {
         'createdAt': createdAt.toIso8601String(),
-      },     
-       'images': List<dynamic>.from(images.map((x) => x)),
-      // 'thumbnail': thumbnail,
+      },
+      'images': List<dynamic>.from(images.map((x) => x)),
     };
   }
 
-  ProductCategory get getCategory{
+  ProductCategory get getCategory {
     final now = DateTime.now();
     if (price < 10) {
       return ProductCategory.ventFlash;
     } else if (price < 50) {
       return ProductCategory.discount;
-    } else if(now.difference(createdAt).inDays <= 3) {
+    } else if (now.difference(createdAt).inDays <= 3) {
       return ProductCategory.newProduction;
     } else {
       return ProductCategory.none;

@@ -8,8 +8,9 @@ class Product extends Equatable {
   String category;
   double price;
   String brand;
-  Map <String, String> meta;
+  Map<String, String> meta;
   List<String> images;
+  int stock;
 
   Product({
     required this.id,
@@ -17,12 +18,12 @@ class Product extends Equatable {
     required this.description,
     required this.category,
     required this.price,
-   required this.brand,
-     required this.meta,
-     required this.images,
-  
+    required this.brand,
+    required this.meta,
+    required this.images,
+    required this.stock,
   });
   @override
-  List<Object?> get props => [id, title,description, category, price, brand, meta, images ];
-
+  List<Object?> get props =>
+      [id, title, description, category, price, brand, meta, images, stock];
 }
