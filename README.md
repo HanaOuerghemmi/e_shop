@@ -1,16 +1,50 @@
 # e_shop
 
-A new Flutter project.
+This Flutter project uses SOLID and Clean Architecture principles to keep the codebase organized and easy to work with. It separates different parts of the code, making it simpler to understand and modify.
 
-## Getting Started
+## Project Structure
+features
+│____featuresName
+│ │ 
+│ │── data/
+│ │ ├── datasources/ #Data layer datasources (API, database, etc.)
+│ │ ├── models/ #  Data models repositories
+│ │ └── repositories/ # Data layer repositories
+│ ├── domain/
+│ │ ├── entities/ # Domain entities
+│ │ ├── repositories/ # Abstract domain repositories
+│ │ └── usecases/ # Domain use cases
+│ │
+│ ├── presentation/
+│ │ ├── pages/ # UI pages
+│ │ ├── widgets/ # Reusable UI widgets
+│ │ ├── blocs/ # Business Logic Components (BLoCs)
 
-This project is a starting point for a Flutter application.
+This project follows Clean Architecture principles, dividing the codebase into three layers:
 
-A few resources to get you started if this is your first Flutter project:
+## Architecture
+1. **Presentation Layer**: Contains UI components and business logic related to UI. It utilizes BLoC pattern for state management and separates UI from business logic.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+2. **Domain Layer**: Contains business logic and domain entities. It is independent of any external libraries or frameworks.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+3. **Data Layer**: Manages data retrieval and storage. It interacts with external data sources such as APIs or databases, and maps them to domain entities.
+
+This separation allows for easier testing, maintenance, and scalability.
+
+## Usage
+
+```
+git clone https://github.com/HanaOuerghemmi/e_shop.git
+```
+
+RUN
+```
+flutter pub get
+```
+```
+flutter run
+```
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests to improve this project.
