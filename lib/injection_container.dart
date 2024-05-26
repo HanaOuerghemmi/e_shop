@@ -4,6 +4,7 @@ import 'package:e_shop/features/product/data/datasources/product_remote_data_sou
 import 'package:e_shop/features/product/data/repositories/product_repository_impl.dart';
 import 'package:e_shop/features/product/domain/repositories/product_repository.dart';
 import 'package:e_shop/features/product/domain/usecases/get_all_product.dart';
+import 'package:e_shop/features/product/domain/usecases/search_product_usecase.dart';
 import 'package:e_shop/features/product/presentation/bloc/products/products_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -15,10 +16,15 @@ Future<void> init() async {
   //! features - products
 
   //? bloc
-  sl.registerFactory(() => ProductsBloc(getAllProducts: sl()));
+  sl.registerFactory(() => ProductsBloc(
+    getAllProducts: sl(),
+    searchProducts: sl(),
+    ));
 
   //? Usecases
   sl.registerLazySingleton(() => getAllProductUsecase(repository: sl()));
+    sl.registerLazySingleton(() => SearchProductUsecase(repository: sl()));
+
   //? Repository
   sl.registerLazySingleton<ProductRepository>(() => ProductRepositoryImpl(
       localDataSource: sl(), remoteDataSource: sl(), networkInfo: sl()));

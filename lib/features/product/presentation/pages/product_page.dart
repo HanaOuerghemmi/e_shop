@@ -13,6 +13,9 @@ class ProductPage extends StatelessWidget {
      final TextEditingController _searchController = TextEditingController();
 
     void _onSearch(String productName) {
+         BlocProvider.of<ProductsBloc>(context).add(SearchProductEvent(productName));
+
+   
     }
     return Scaffold(
       appBar: AppBar(
@@ -62,4 +65,6 @@ class ProductPage extends StatelessWidget {
 }
 Future<void> _onRefresh(BuildContext context) async {
     BlocProvider.of<ProductsBloc>(context).add(RefreshProductEvent());
+    BlocProvider.of<ProductsBloc>(context).add(getAllProductEvent());
+
   }

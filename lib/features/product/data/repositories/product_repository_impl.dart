@@ -36,4 +36,36 @@ class ProductRepositoryImpl implements ProductRepository {
       }
     }
   }
+
+
+  @override
+  Future<Either<Failure, List<Product>>> searchProducts(String productName) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final remoteProducts = await remoteDataSource.getAllProduct();
+        final filteredProducts = remoteProducts
+            .where((product) => product.title.toLowerCase().contains(productName.toLowerCase()))
+            .toList();
+        localDataSource.cacheProduct(remoteProducts); // Cache the entire product list, including filtered
+        return Right(filteredProducts);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      try {
+        final localProducts = await localDataSource.getCachedProduct();
+        final filteredProducts = localProducts
+            .where((product) => product.title.toLowerCase().contains(productName.toLowerCase()))
+            .toList();
+        return Right(filteredProducts);
+      } on EmptyCacheException {
+        return Left(EmptyCacheFailure());
+      }
+    }
+  }
 }
+  
+
+
+
+

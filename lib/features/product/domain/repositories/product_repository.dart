@@ -4,5 +4,7 @@ import 'package:e_shop/features/product/domain/entities/product.dart';
 
 abstract class ProductRepository{
   Future<Either<Failure,List<Product>>> getAllProduct();
+  Future<Either<Failure, List<Product>>> searchProducts(String productName);
+
   
 }

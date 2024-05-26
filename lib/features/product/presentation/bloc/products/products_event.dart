@@ -8,3 +8,8 @@ sealed class ProductsEvent extends Equatable {
 }
 class getAllProductEvent extends ProductsEvent {}
 class RefreshProductEvent extends ProductsEvent {}
+class SearchProductEvent extends ProductsEvent {
+  final String productName;
+
+  SearchProductEvent(this.productName);
+}
